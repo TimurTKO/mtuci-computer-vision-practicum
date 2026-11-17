@@ -1,0 +1,23 @@
+{
+  "_comment": "Конфигурация общего evaluator курса. ЛР6 и ЛР7. Одинакова для всех моделей, в ходе работы не изменяется.",
+  "inference": {
+    "conf": 0.001,
+    "max_det": 300,
+    "_comment": "Полный ранжированный список для расчёта AP. Обе модели используют одинаковые значения."
+  },
+  "coco_eval": {
+    "iou_type": "bbox",
+    "iou_start": 0.5,
+    "iou_end": 0.95,
+    "iou_steps": 10,
+    "max_dets": [1, 10, 100],
+    "headline_max_det": 100,
+    "area_rng": [[0, 10000000000], [0, 1024], [1024, 9216], [9216, 10000000000]],
+    "area_rng_lbl": ["all", "small", "medium", "large"],
+    "_comment": "Значения по умолчанию COCOeval. Итоговая AP приводится при maxDets = 100; evaluator усекает список сам. area_rng заданы в пикселях площади: small < 32^2, medium 32^2..96^2, large > 96^2."
+  },
+  "crowd_ignore": {
+    "field": "iscrowd",
+    "_comment": "Правило crowd/ignore задаётся полем iscrowd в аннотациях и не теряется при конвертации."
+  }
+}

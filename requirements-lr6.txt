@@ -1,0 +1,4 @@
+# -*- coding: utf-8 -*-
+# ЛР6. Дополнительно к requirements.txt
+ultralytics==8.4.33
+pycocotools==2.0.11

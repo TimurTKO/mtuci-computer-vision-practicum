@@ -1,0 +1,48 @@
+{
+ "info": {
+  "description": "\u0418\u0433\u0440\u0443\u0448\u0435\u0447\u043d\u044b\u0439 \u044d\u0442\u0430\u043b\u043e\u043d: \u043f\u0440\u0438\u043c\u0435\u0440 4 \u0433\u043b\u0430\u0432\u044b 9"
+ },
+ "licenses": [],
+ "images": [
+  {
+   "id": 1,
+   "file_name": "a.jpg",
+   "width": 640,
+   "height": 480
+  }
+ ],
+ "categories": [
+  {
+   "id": 1,
+   "name": "object"
+  }
+ ],
+ "annotations": [
+  {
+   "id": 1,
+   "image_id": 1,
+   "category_id": 1,
+   "bbox": [
+    100,
+    100,
+    100,
+    100
+   ],
+   "area": 10000,
+   "iscrowd": 0
+  },
+  {
+   "id": 2,
+   "image_id": 1,
+   "category_id": 1,
+   "bbox": [
+    300,
+    200,
+    50,
+    50
+   ],
+   "area": 2500,
+   "iscrowd": 0
+  }
+ ]
+}

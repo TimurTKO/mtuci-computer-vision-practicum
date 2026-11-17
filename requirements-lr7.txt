@@ -1,0 +1,6 @@
+# -*- coding: utf-8 -*-
+# ЛР7. Дополнительно к requirements.txt
+# Версия критична: сигнатура post_process_grounded_object_detection менялась.
+# В 5.16.1 параметр порога называется threshold (ранее box_threshold),
+# строковые фразы возвращаются в ключе text_labels.
+transformers==5.16.1

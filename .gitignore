@@ -1,0 +1,35 @@
+# Окружения и кэши
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+
+# Наборы данных, веса и результаты: в репозиторий не добавляются
+data/oxford-iiit-pet/
+data/VOCdevkit/
+*.tar
+*.tar.gz
+*.zip
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.onnx
+checkpoints/
+weights/
+artifacts/
+runs/
+bulk_outputs/
+hf_home/
+
+# Course edition, собранная локально, и материалы преподавателя
+course_edition/
+teacher_only/
+teacher/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini

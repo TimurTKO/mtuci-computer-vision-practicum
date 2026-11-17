@@ -1,0 +1,5 @@
+# -*- coding: utf-8 -*-
+# ЛР5. Дополнительно к requirements.txt
+# segment-anything не публикуется на PyPI, поэтому закреплён коммитом.
+# Ставится одной командой, работает под Windows без WSL.
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git@dca509fe793f601edb92606367a655c15ac00fdf
