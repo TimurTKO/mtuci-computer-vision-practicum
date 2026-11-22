@@ -54,7 +54,17 @@
   python scripts/sam_session.py
   ```
   Режим B (ввод координат с клавиатуры) работает в любой среде, включая Jupyter и Colab.
-- Bulk outputs: `docs/BULK_OUTPUTS.md`; embeddings вычисляются `tools/make_lr5_bulk.py`.
+- Архив bulk outputs в публичный выпуск v1.0.1 не входит. При наличии локальных изображений
+  Oxford-IIIT Pet и checkpoint SAM из `GET_DATA.md` студент может вычислить embeddings и
+  маски-кандидаты сам:
+
+  ```
+  python tools/make_lr5_bulk.py --images <каталог изображений> --checkpoint <sam_vit_b_01ec64.pth> --out <каталог результатов>
+  ```
+
+  Для 250 изображений проверенный прогон занял около 18 минут на 8-поточном CPU; нужны также
+  место для embeddings (около 0,46 ГБ) и время на загрузку изображений и checkpoint. GPU не
+  обязателен. Формат результатов — `docs/BULK_OUTPUTS.md`.
 - Формат записи о маске: `examples/mask_record_lr5.json`.
 - Downstream-проверка выполняется из собственного checkpoint ЛР4.
 
@@ -72,8 +82,9 @@
   `examples/toy_gt.json`, `examples/toy_results_records.json`.
 - Модели: `yolo11n.pt` (дообучается студентом), `rtdetr-l.pt`. В учебном процессе checkpoint
   RT-DETR-L, дообученный на course train, выдаёт преподаватель. Вне учебного процесса его
-  получают дообучением `rtdetr-l.pt` на той же train-части по шагу 4 ЛР6; на 8-поточном CPU
-  5 эпох при 480 px занимают около 53 мин.
+  получают дообучением `rtdetr-l.pt` на той же train-части по шагу 4 ЛР6; в проверенной
+  конфигурации 5 эпох при 480 px заняли около 53 минут на 8-поточном CPU. Время на другом
+  компьютере может заметно отличаться; GPU ускорит обучение и полный инференс.
 
 ## ЛР7. Foundation models и open-vocabulary разметка
 
@@ -86,7 +97,15 @@
   python data/build_voc_editions.py --voc <путь>/VOCdevkit/VOC2007 --out <каталог> lr7
   ```
   Для unlabeled pool разметка не создаётся. Классы и роли данных — `data/lr7_course_edition/ontology.json`.
-- Bulk outputs: outputs Grounding DINO и embeddings CLIP/DINOv2 (`docs/BULK_OUTPUTS.md`).
+- Публичный выпуск v1.0.1 не содержит готовых outputs Grounding DINO и embeddings CLIP/DINOv2.
+  Их вычисляют по шагам ЛР7 из пособия на изображениях, собранных по manifest: Grounding DINO
+  запускают для gold validation и unlabeled pool, а для gold test — только после фиксации policy;
+  CLIP и DINOv2 применяют к crops размеченных manual train и gold validation. Ревизии моделей
+  закреплены в `docs/MODELS.md`, форматы выходов — в `docs/BULK_OUTPUTS.md`.
+- Полного сценария генерации архива ЛР7 в репозитории нет. Для инференса на всех изображениях
+  потребуется значительное время; GPU рекомендуется. На CPU можно проверить небольшой объём,
+  но время полного прогона заранее не гарантировано. Если у студента нет подходящих ресурсов,
+  преподаватель может предоставить подготовленные outputs отдельно после согласования прав.
 - Формат записи pseudo-label: `examples/pseudo_label_record_lr7.json`.
 
 ## Что доступно только в учебном процессе
@@ -96,4 +115,5 @@
 эталонные решения самостоятельных частей работ, эталонная разметка unlabeled pool для аудита,
 а также обученные модели курса (дообученный checkpoint RT-DETR-L, резервный checkpoint ЛР4).
 Вне учебного процесса работы выполнимы с собственными моделями, но без ориентиров эталонного
-прогона.
+прогона. Без bulk outputs полный маршрут ЛР7 требует самостоятельного тяжёлого инференса;
+наличие только CPU может сделать его практически неудобным.
